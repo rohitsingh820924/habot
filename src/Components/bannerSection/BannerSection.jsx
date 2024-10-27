@@ -29,7 +29,7 @@ const BannerSection = () => {
         />
       </div>
       <div className="container mx-auto px-4 py-[60px] lg:py-[120px]">
-        <h1 className="text-center text-2xl md:text-4xl lg:text-[55px] text-white lg:leading-[66px]"><b className="block">Are You a Supplier?</b> Explore Matching Opportunities.</h1>
+        <h1 className="text-center text-xl md:text-4xl lg:text-[55px] text-white lg:leading-[66px]"><b className="block">Are You a Supplier?</b> Explore Matching Opportunities.</h1>
         <div className="my-10 max-w-5xl mx-auto">
           <form onSubmit={handleSubmit}>
             <div className="flex flex-col md:flex-row gap-[10px]">

@@ -8,7 +8,7 @@ const VideoSection = () => {
         <div className="container rounded-md mx-auto lg:px-[70px] lg:py-[140px] md:p-[40px] p-4 bg-[#072F57]">
             <div className="grid lg:grid-cols-2 gap-8 md:gap-16">
                 <div>
-                    <iframe className='w-full h-auto aspect-video' width="560" height="315" src="https://www.youtube.com/embed/IZLp-TZyDkQ?si=JveqdYrHjhNVfo00" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+                    <iframe className='w-full h-auto aspect-video' width="560" height="315" src="https://www.youtube.com/embed/IZLp-TZyDkQ?si=JveqdYrHjhNVfo00" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
                 </div>
                 <div>
                     <div className='mb-10'>

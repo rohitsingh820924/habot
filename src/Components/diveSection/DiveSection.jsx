@@ -34,7 +34,7 @@ const DiveSection = () => {
             <div className="grid lg:grid-cols-2 items-center gap-10 md:gap-20 lg:gap-40">
                 <div>
                     <h2 className='text-2xl md:text-4xl font-bold'>Ready to dive into <span className='text-[#271555]'>HABOT?</span></h2>
-                    <p className='font-light my-9 text-sm md:text-lg'>Signing up with HABOT opens the door to a world of new opportunities and potential for business growth. Gain access to a vibrant community of like-minded individuals, unlock valuable resources, and take the first step towards realizing your entrepreneurial dreams.</p>
+                    <p className='font-light my-5 md:my-9 text-sm md:text-lg'>Signing up with HABOT opens the door to a world of new opportunities and potential for business growth. Gain access to a vibrant community of like-minded individuals, unlock valuable resources, and take the first step towards realizing your entrepreneurial dreams.</p>
 
                     <a href="#" className='group bg-primary w-full block p-5 text-white text-center font-bold text-lg rounded-md relative max-w-[320px] '>Sign up Today !
                     <svg className='absolute top-[26px] right-10 transition-transform duration-300 group-hover:translate-x-2' width="32" height="17" viewBox="0 0 32 17" fill="none" xmlns="http://www.w3.org/2000/svg">

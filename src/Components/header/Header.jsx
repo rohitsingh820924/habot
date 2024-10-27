@@ -43,7 +43,7 @@ const Header = () => {
     <header ref={navRef} className='sticky top-0 bg-white z-10'>
         <div className="container mx-auto p-4 bg-white">
             <div className="flex justify-between items-center">
-                <div className="logo w-[181px]">
+                <div className="logo w-[120px] md:w-[180px]">
                 <Link to="/">
                     <img src={Logo} alt="Habot-Logo" className='w-full h-auto' />
                 </Link>
@@ -69,7 +69,7 @@ const Header = () => {
           }`}
         ></span>
       </button>) : ''}
-                <nav className={`flex flex-col md:flex-row gap-5 md:items-center justify-between bg-white ${isMobile ? 'fixed h-[calc(100dvh-67px)] w-[250px] transition-all duration-300 delay-100 top-[67px] right-0 z-10 p-4' : ''} ${isNavOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+                <nav className={`flex flex-col md:flex-row gap-5 md:items-center justify-between bg-white ${isMobile ? 'fixed h-[calc(100dvh-62px)] w-[250px] transition-all duration-300 delay-100 top-[62px] right-0 z-10 p-4' : ''} ${isNavOpen ? 'translate-x-0' : 'translate-x-full'}`}>
                     <ul className={`flex flex-col md:flex-row gap-5 md:items-center relative`}>
                         <li  onClick={() => setIsNavOpen(false)}><Link className="text-[14.5px]" to="/find-suppliers">Find Suppliers</Link></li>
                        <div ref={DropdownRef}><li><span className="text-[14.5px] flex gap-2 cursor-pointer h-[20px]" onClick={() => setOpen(!open)}>Find Service Tags <img src={DropdownIcon} className={`shrink-0 transition-all duration-300 ${open ? '-rotate-180' : ''}`} alt="drop-icon" /></span></li>

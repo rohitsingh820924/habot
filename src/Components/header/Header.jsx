@@ -69,12 +69,12 @@ const Header = () => {
           }`}
         ></span>
       </button>) : ''}
-                <nav className={`flex flex-col md:flex-row gap-5 md:items-center justify-between bg-white ${isMobile ? 'fixed h-[calc(100svh-67px)] w-[250px] transition-all duration-300 delay-100 top-[67px] right-0 z-10 p-4' : ''} ${isNavOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+                <nav className={`flex flex-col md:flex-row gap-5 md:items-center justify-between bg-white ${isMobile ? 'fixed h-[calc(100dvh-67px)] w-[250px] transition-all duration-300 delay-100 top-[67px] right-0 z-10 p-4' : ''} ${isNavOpen ? 'translate-x-0' : 'translate-x-full'}`}>
                     <ul className={`flex flex-col md:flex-row gap-5 md:items-center relative`}>
-                        <li><Link className="text-[14.5px]" to="/find-suppliers">Find Suppliers</Link></li>
+                        <li  onClick={() => setIsNavOpen(false)}><Link className="text-[14.5px]" to="/find-suppliers">Find Suppliers</Link></li>
                        <div ref={DropdownRef}><li><span className="text-[14.5px] flex gap-2 cursor-pointer h-[20px]" onClick={() => setOpen(!open)}>Find Service Tags <img src={DropdownIcon} className={`shrink-0 transition-all duration-300 ${open ? '-rotate-180' : ''}`} alt="drop-icon" /></span></li>
                         {
-                            open ? (<ul className='md:absolute right-0 top-8 bg-white p-4 md:drop-shadow-md border md:shadow-2xl md:w-40 rounded-md flex flex-col mt-3 gap-2'>
+                            open ? (<ul onClick={() => setIsNavOpen(false)} className='md:absolute right-0 top-8 bg-white p-4 md:drop-shadow-md border md:shadow-2xl md:w-40 rounded-md flex flex-col mt-3 gap-2'>
                                 <li><Link className="text-[14.5px] text-black hover:text-primary transition-all duration-300 delay-75 font-m" to="/option-1">Option 1</Link></li>
                                 <li><Link className="text-[14.5px] text-black hover:text-primary transition-all duration-300 delay-75 font-m" to="/option-2">Option 2</Link></li>
                                 <li><Link className="text-[14.5px] text-black hover:text-primary transition-all duration-300 delay-75 font-m" to="/option-3">Option 3</Link></li>
@@ -83,7 +83,7 @@ const Header = () => {
                             </ul>) : ''
                         }</div>
                     </ul>
-                    <button className='text-primary py-4 px-8 border border-primary text-[15px] font-bold rounded-md font-inter'>Login / Sign Up</button>
+                    <button  onClick={() => setIsNavOpen(false)} className='text-primary py-4 px-8 border border-primary text-[15px] font-bold rounded-md font-inter'>Login / Sign Up</button>
                 </nav>
                 </div>
             </div>

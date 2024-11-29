@@ -5,7 +5,7 @@ const VideoSection = () => {
     const [active, setActive] = useState(1)
   return (
     <div>
-        <div className="container rounded-md mx-auto lg:px-[70px] lg:py-[140px] md:p-[40px] p-4 bg-[#072F57]">
+        <div className="container rounded-md mx-auto lg:px-[70px] lg:py-[140px] md:p-[40px] p-4 bg-[#072F57] md:mb-[140px] mb-[40px]">
             <div className="grid lg:grid-cols-2 gap-8 md:gap-16">
                 <div>
                     <iframe className='w-full h-auto aspect-video' width="560" height="315" src="https://www.youtube.com/embed/IZLp-TZyDkQ?si=JveqdYrHjhNVfo00" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>

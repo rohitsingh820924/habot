@@ -10,6 +10,10 @@
     max-height: 500px;
 }
 
+.select-box-search .ant-select-selector{
+    width: 160px !important;
+}
+
 /* Responsive */
 @media (max-width: 767px) {
     .service-select .ant-select-selector {

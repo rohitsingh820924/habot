@@ -39,7 +39,7 @@ const Footer = () => {
                     <div>
                         <h2 className='text-[15px] text-white font-bold mb-3 font-inter'>Related</h2>
                         <ul>
-                            <li><Link className='text-white font-light text-sm mb-2 font-inter' to="/find-buyer">Find Buyer</Link></li>
+                            <li><Link className='text-white font-light text-sm mb-2 font-inter' to="/post-requirement">Find Buyer</Link></li>
                             <li><Link className='text-white font-light text-sm mb-2 font-inter' to="/feedback">Feedback</Link></li>
                         </ul>
                     </div>

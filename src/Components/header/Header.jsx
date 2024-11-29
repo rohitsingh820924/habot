@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect, useLayoutEffect } from "react";
 import Logo from "../../assets/Images/habot-logo.png";
 import { Link } from "react-router-dom";
-import DropdownIcon from "../../assets/icons/dropdown-icon.svg";
 import LoginModal from "../loginModal/LoginModal";
 
 import { DownOutlined } from "@ant-design/icons";
@@ -10,7 +9,6 @@ import { Dropdown, Space } from "antd";
 const Header = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
-  const DropdownRef = useRef(null);
   const navRef = useRef(null);
 
   const items = [
@@ -19,7 +17,7 @@ const Header = () => {
         <a
           target="_blank"
           rel="noopener noreferrer"
-          href="/alternative-special-education-services"
+          href="/requirements/alternative-special-education-services"
         >
           Alternative/Special Education Services
         </a>
@@ -31,7 +29,7 @@ const Header = () => {
         <a
           target="_blank"
           rel="noopener noreferrer"
-          href="/arts-training"
+          href="/requirements/arts-training"
         >
           Arts Training
         </a>
@@ -43,7 +41,7 @@ const Header = () => {
         <a
           target="_blank"
           rel="noopener noreferrer"
-          href="/automobile-driving-classes-driving"
+          href="/requirements/automobile-driving-classes-driving"
         >
           Automobile Driving classes (Driving)
         </a>
@@ -55,7 +53,7 @@ const Header = () => {
         <a
           target="_blank"
           rel="noopener noreferrer"
-          href="/bachelor-of-education"
+          href="/requirements/bachelor-of-education"
         >
           Bachelor of education
         </a>
@@ -67,7 +65,7 @@ const Header = () => {
         <a
           target="_blank"
           rel="noopener noreferrer"
-          href="/backlink-creation"
+          href="/requirements/backlink-creation"
         >
           Backlink creation
         </a>
@@ -79,7 +77,7 @@ const Header = () => {
         <a
           target="_blank"
           rel="noopener noreferrer"
-          href="/college"
+          href="/requirements/college"
         >
           College
         </a>
@@ -91,7 +89,7 @@ const Header = () => {
         <a
           target="_blank"
           rel="noopener noreferrer"
-          href="/computer-training"
+          href="/requirements/computer-training"
         >
           Computer Training
         </a>
@@ -103,7 +101,7 @@ const Header = () => {
         <a
           target="_blank"
           rel="noopener noreferrer"
-          href="/content-creation"
+          href="/requirements/content-creation"
         >
           Content creation
         </a>
@@ -115,7 +113,7 @@ const Header = () => {
         <a
           target="_blank"
           rel="noopener noreferrer"
-          href="/distance-learning"
+          href="/requirements/distance-learning"
         >
           Distance learning
         </a>
@@ -127,7 +125,7 @@ const Header = () => {
         <a
           target="_blank"
           rel="noopener noreferrer"
-          href="/education-and-career-counseling"
+          href="/requirements/education-and-career-counseling"
         >
           Education and Career Counseling
         </a>
@@ -139,7 +137,7 @@ const Header = () => {
         <a
           target="_blank"
           rel="noopener noreferrer"
-          href="/education-consultants"
+          href="/requirements/education-consultants"
         >
           Education Consultants
         </a>
@@ -151,7 +149,7 @@ const Header = () => {
         <a
           target="_blank"
           rel="noopener noreferrer"
-          href="/education-consulting"
+          href="/requirements/education-consulting"
         >
           Education consulting
         </a>
@@ -163,7 +161,7 @@ const Header = () => {
         <a
           target="_blank"
           rel="noopener noreferrer"
-          href="/educational-support-services"
+          href="/requirements/educational-support-services"
         >
           Educational Support Services
         </a>
@@ -175,7 +173,7 @@ const Header = () => {
         <a
           target="_blank"
           rel="noopener noreferrer"
-          href="/gcp-deployment"
+          href="/requirements/gcp-deployment"
         >
           GCP Deployment
         </a>
@@ -187,7 +185,7 @@ const Header = () => {
         <a
           target="_blank"
           rel="noopener noreferrer"
-          href="/image-video-creation"
+          href="/requirements/image-video-creation"
         >
           Image/Video creation
         </a>
@@ -199,7 +197,7 @@ const Header = () => {
         <a
           target="_blank"
           rel="noopener noreferrer"
-          href="/language-classes"
+          href="/requirements/language-classes"
         >
           Language classes
         </a>
@@ -211,7 +209,7 @@ const Header = () => {
         <a
           target="_blank"
           rel="noopener noreferrer"
-          href="/online-learning"
+          href="/requirements/online-learning"
         >
           Online Learning
         </a>
@@ -223,7 +221,7 @@ const Header = () => {
         <a
           target="_blank"
           rel="noopener noreferrer"
-          href="/private-tutoring"
+          href="/requirements/private-tutoring"
         >
           Private Tutoring
         </a>
@@ -235,7 +233,7 @@ const Header = () => {
         <a
           target="_blank"
           rel="noopener noreferrer"
-          href="/school"
+          href="/requirements/school"
         >
           School
         </a>
@@ -247,7 +245,7 @@ const Header = () => {
         <a
           target="_blank"
           rel="noopener noreferrer"
-          href="/school-counselor"
+          href="/requirements/school-counselor"
         >
           School counselor
         </a>
@@ -259,7 +257,7 @@ const Header = () => {
         <a
           target="_blank"
           rel="noopener noreferrer"
-          href="/special-education"
+          href="/requirements/special-education"
         >
           Special education
         </a>
@@ -271,7 +269,7 @@ const Header = () => {
         <a
           target="_blank"
           rel="noopener noreferrer"
-          href="/sports-education-and-coaching"
+          href="/requirements/sports-education-and-coaching"
         >
           Sports Education and Coaching
         </a>
@@ -283,7 +281,7 @@ const Header = () => {
         <a
           target="_blank"
           rel="noopener noreferrer"
-          href="/student-assessment"
+          href="/requirements/student-assessment"
         >
           Student assessment
         </a>
@@ -295,7 +293,7 @@ const Header = () => {
         <a
           target="_blank"
           rel="noopener noreferrer"
-          href="/student-tutoring"
+          href="/requirements/student-tutoring"
         >
           Student tutoring
         </a>
@@ -307,7 +305,7 @@ const Header = () => {
         <a
           target="_blank"
           rel="noopener noreferrer"
-          href="/teacher-training"
+          href="/requirements/teacher-training"
         >
           Teacher Training
         </a>
@@ -319,7 +317,7 @@ const Header = () => {
         <a
           target="_blank"
           rel="noopener noreferrer"
-          href="/trade-school"
+          href="/requirements/trade-school"
         >
           Trade school
         </a>
@@ -354,7 +352,7 @@ const Header = () => {
     };
   }, []);
   return (
-    <header ref={navRef} className="sticky top-0 bg-white z-10">
+    <header ref={navRef} className="sticky top-0 bg-white z-10 drop-shadow">
       <div className="container mx-auto p-4 bg-white">
         <div className="flex justify-between items-center">
           <div className="logo w-[120px] md:w-[180px]">
@@ -404,7 +402,7 @@ const Header = () => {
                 className={`flex flex-col md:flex-row gap-5 md:items-center relative`}
               >
                 <li onClick={() => setIsNavOpen(false)}>
-                  <Link className="text-[14.5px]" to="/find-suppliers">
+                  <Link className="text-[14.5px]" to="/post-requirement">
                     Find Suppliers
                   </Link>
                 </li>

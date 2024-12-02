@@ -10,6 +10,7 @@ import { GrGoogle } from "react-icons/gr";
 import { FaFacebookF } from "react-icons/fa";
 import { FaLinkedinIn } from "react-icons/fa";
 import ShowPassword from '../ShowPassword';
+import ReactFlagsSelect from "react-flags-select";
 
 
 const LoginModal = () => {
@@ -35,10 +36,12 @@ const LoginModal = () => {
 
   const formikSignup = useFormik({
     initialValues: {
-      name: "",
+      fullName: "",
       email: "",
       password: "",
       confirmPassword: "",
+      phoneNumber: "",
+      countryCode: "IN",
     },
     validationSchema: Yup.object({
       name: Yup.string()
@@ -130,7 +133,7 @@ const LoginModal = () => {
         <div className='hover:bg-secondary border border-secondary p-2 rounded-full cursor-pointer transition-all group'><FaLinkedinIn className='text-secondary group-hover:text-white transition-all' /></div>
     </div>
 
-    <p className='text-center mt-5 -mb-3'>Already a Member? <span className='text-primary' onClick={()=>setIsLogin(false)}>Login</span>.</p>
+    <p className='text-center mt-5 -mb-3'>Not a Member Yet? <span className='text-primary' onClick={()=>setIsLogin(false)}>Signup</span>.</p>
       </Modal>)
       :
       (<Modal centered title="" open={!isLogin && isModalOpen} width={400} footer={''} onCancel={() => dispatch(setIsLoginOpen(false))}>
@@ -221,6 +224,44 @@ const LoginModal = () => {
         {formikSignup.errors.confirmPassword}
       </span>
     )}
+
+<div className="relative">
+    <label htmlFor="name" className="block font-medium mb-2">
+      Name
+    </label>
+    <div className='flex'>
+    <ReactFlagsSelect
+    selected={formikSignup.values.countryCode}
+    onSelect={(code) => {
+      formikSignup.setFieldValue('countryCode', code);
+    }}
+    searchable
+    searchPlaceholder="IND"
+    className='w-[100px]'
+    showOptionLabel={false}
+    fullWidth={false}
+    placeholder=" "
+    showSelectedLabel={false}
+    alignOptionsToRight
+  />
+    <input
+      id="phoneNumber"
+      type="number"
+      name="phoneNumber"
+      className="bg-green-300/50 px-2 py-1 rounded w-full mb-3 outline-none focus:ring-2 focus:ring-green-500"
+      value={formikSignup.values.phoneNumber}
+      placeholder="Enter Name"
+      onChange={formikSignup.handleChange}
+      onBlur={formikSignup.handleBlur}
+    />
+    </div>
+    {formikSignup.touched.phoneNumber && formikSignup.errors.phoneNumber && (
+      <span className="text-red-600 absolute text-xs right-0 top-2">
+        {formikSignup.errors.phoneNumber}
+      </span>
+    )}
+  </div>
+    
   </div>
 
   <button
@@ -240,7 +281,7 @@ const LoginModal = () => {
         <div className='hover:bg-secondary border border-secondary p-2 rounded-full cursor-pointer transition-all group'><FaLinkedinIn className='text-secondary group-hover:text-white transition-all' /></div>
     </div>
 
-    <p className='text-center mt-5 -mb-3'>Not a Member Yet? <span className='text-primary' onClick={()=>setIsLogin(true)}>Login</span>.</p>
+    <p className='text-center mt-5 -mb-3'>Already a Member? <span className='text-primary' onClick={()=>setIsLogin(true)}>Login</span>.</p>
       </Modal>)
         }
     </>

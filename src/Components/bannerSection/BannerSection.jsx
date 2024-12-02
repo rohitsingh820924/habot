@@ -63,7 +63,6 @@ const BannerSection = () => {
                       .toLowerCase()
                       .includes(input.toLowerCase())
                   }
-                  const
                   options={[
                     {
                       value: "alternative-special-education-services",
@@ -148,7 +147,6 @@ const BannerSection = () => {
                       .toLowerCase()
                       .includes(input.toLowerCase())
                   }
-                  const
                   options={[
                     { value: "abu-dhabi", label: "Abu Dhabi" },
                     { value: "dubai", label: "Dubai" },

@@ -2,14 +2,18 @@ import React, { useState, useRef, useEffect, useLayoutEffect } from "react";
 import Logo from "../../assets/Images/habot-logo.png";
 import { Link } from "react-router-dom";
 import LoginModal from "../loginModal/LoginModal";
-
 import { DownOutlined } from "@ant-design/icons";
 import { Dropdown, Space } from "antd";
+import { useSelector } from "react-redux";
+import { FaRegCircleUser } from "react-icons/fa6";
+import User from "../user/User";
 
 const Header = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const navRef = useRef(null);
+
+  const isAuth = useSelector((state) => state.auth.isAuth)
 
   const items = [
     {
@@ -419,7 +423,9 @@ const Header = () => {
               </Dropdown>
                   </li>
               </ul>
-              <LoginModal onClick={() => setIsNavOpen(false)} />
+              {
+                !isAuth ? (<LoginModal onClick={() => setIsNavOpen(false)} />) : (<User />)
+              }
             </nav>
           </div>
         </div>

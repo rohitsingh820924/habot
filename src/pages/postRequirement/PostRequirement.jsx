@@ -1,11 +1,14 @@
 import React from "react";
+import Banner from "../../assets/Images/banner.png";
 import { Select, Input } from "antd";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { useSelector } from "react-redux";
+import { apiPost } from "../../libs/api";
 
 const PostRequirement = () => {
   const { TextArea } = Input;
-
+  const email = useSelector((state) => state.auth.email)
   const formik = useFormik({
     initialValues: {
       jobTitle: "",
@@ -21,14 +24,42 @@ const PostRequirement = () => {
       referralCode: Yup.string(),
       description: Yup.string(),
     }),
-    onSubmit: (values) => {
-      alert("Signup successful: " + JSON.stringify(values));
+    onSubmit: async(values) => {
+      try {
+        const response = await apiPost('http://localhost:5000/api/post-requirements', {values, email})
+        if (response.token) {
+          const token = JSON.stringify({ jwt: response.token });
+          Cookies.set('authToken', token, { path: '/' });
+          dispatch(checkAuthStatus());
+          dispatch(setIsLoginOpen(false));
+        } else {
+          console.log(response.data.message);
+        }
+       } catch (error) {
+        console.log("Error",error)
+       }
     },
   });
 
   return (
-    <div className="bg-white">
-      <div className="max-w-3xl mx-auto p-4">
+    <div className="">
+      <div className="relative">
+        <div className="absolute h-full w-full -z-10">
+          <div className="absolute inset-0 bg-[#072F57]/45"></div>
+          <div className="bg-gradient-to-r inset-0 absolute from-[#072F57]/75 to-[#072F57]/0"></div>
+          <img
+            src={Banner}
+            className="h-full w-full object-cover"
+            alt="Banner-Image"
+          />
+        </div>
+        <div className="container mx-auto px-4 py-[60px] lg:py-[120px]">
+          <h1 className="text-center text-xl md:text-4xl lg:text-[55px] text-white lg:leading-[66px] font-bold">
+          Post Requirements
+          </h1>
+        </div>
+      </div>
+      <div className="max-w-3xl mx-auto p-4 bg-white">
         <div className="px-4 pt-6 pb-4 rounded-xl bg-white border">
           <h1 className="font-bold text-center text-3xl mb-4 text-secondary">
             Give your requirements
@@ -47,7 +78,7 @@ const PostRequirement = () => {
                 name="jobTitle"
                 className="mb-3"
                 value={formik.values.jobTitle}
-                placeholder="Enter Email"
+                placeholder="Enter Job Title"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
               />
@@ -74,33 +105,34 @@ const PostRequirement = () => {
                     .includes(input.toLowerCase())
                 }
                 options = {[
-                  { value: '1', label: 'Alternative/Special Education Services' },
-                  { value: '2', label: 'Arts Training' },
-                  { value: '3', label: 'Automobile Driving classes (Driving)' },
-                  { value: '4', label: 'Bachelor of education' },
-                  { value: '5', label: 'Backlink creation' },
-                  { value: '6', label: 'College' },
-                  { value: '7', label: 'Computer Training' },
-                  { value: '8', label: 'Content creation' },
-                  { value: '9', label: 'Distance learning' },
-                  { value: '10', label: 'Education and Career Counseling' },
-                  { value: '11', label: 'Education Consultants' },
-                  { value: '12', label: 'Education consulting' },
-                  { value: '13', label: 'Educational Support Services' },
-                  { value: '14', label: 'GCP Deployment' },
-                  { value: '15', label: 'Image/Video creation' },
-                  { value: '16', label: 'Language classes' },
-                  { value: '17', label: 'Online Learning' },
-                  { value: '18', label: 'Private Tutoring' },
-                  { value: '19', label: 'School' },
-                  { value: '20', label: 'School counselor' },
-                  { value: '21', label: 'Special education' },
-                  { value: '22', label: 'Sports Education and Coaching' },
-                  { value: '23', label: 'Student assessment' },
-                  { value: '24', label: 'Student tutoring' },
-                  { value: '25', label: 'Teacher Training' },
-                  { value: '26', label: 'Trade school' },
-                ]}
+                  { value: 'Alternative/Special Education Services', label: 'Alternative/Special Education Services' },
+                  { value: 'Arts Training', label: 'Arts Training' },
+                  { value: 'Automobile Driving classes (Driving)', label: 'Automobile Driving classes (Driving)' },
+                  { value: 'Bachelor of education', label: 'Bachelor of education' },
+                  { value: 'Backlink creation', label: 'Backlink creation' },
+                  { value: 'College', label: 'College' },
+                  { value: 'Computer Training', label: 'Computer Training' },
+                  { value: 'Content creation', label: 'Content creation' },
+                  { value: 'Distance learning', label: 'Distance learning' },
+                  { value: 'Education and Career Counseling', label: 'Education and Career Counseling' },
+                  { value: 'Education Consultants', label: 'Education Consultants' },
+                  { value: 'Education consulting', label: 'Education consulting' },
+                  { value: 'Educational Support Services', label: 'Educational Support Services' },
+                  { value: 'GCP Deployment', label: 'GCP Deployment' },
+                  { value: 'Image/Video creation', label: 'Image/Video creation' },
+                  { value: 'Language classes', label: 'Language classes' },
+                  { value: 'Online Learning', label: 'Online Learning' },
+                  { value: 'Private Tutoring', label: 'Private Tutoring' },
+                  { value: 'School', label: 'School' },
+                  { value: 'School counselor', label: 'School counselor' },
+                  { value: 'Special education', label: 'Special education' },
+                  { value: 'Sports Education and Coaching', label: 'Sports Education and Coaching' },
+                  { value: 'Student assessment', label: 'Student assessment' },
+                  { value: 'Student tutoring', label: 'Student tutoring' },
+                  { value: 'Teacher Training', label: 'Teacher Training' },
+                  { value: 'Trade school', label: 'Trade school' },
+                ]
+                }
               />
               {formik.touched.service && formik.errors.service && (
                 <span className="text-red-600 absolute text-xs right-0 top-2">
@@ -126,12 +158,12 @@ const PostRequirement = () => {
                     .includes(input.toLowerCase())
                 }
                 options = {[
-                  { value: '1', label: 'Abu Dhabi' },
-                  { value: '2', label: 'Dubai' },
-                  { value: '3', label: 'Sharjah & Ajman' },
-                  { value: '4', label: 'Fujairah' },
-                  { value: '5', label: 'Ras Al Khaimah' },
-                  { value: '6', label: 'Umm Al Quwain' },
+                  { value: 'Abu Dhabi', label: 'Abu Dhabi' },
+                  { value: 'Dubai', label: 'Dubai' },
+                  { value: 'Sharjah & Ajman', label: 'Sharjah & Ajman' },
+                  { value: 'Fujairah', label: 'Fujairah' },
+                  { value: 'Ras Al Khaimah', label: 'Ras Al Khaimah' },
+                  { value: 'Umm Al Quwain', label: 'Umm Al Quwain' },
                 ]}
               />
               {formik.touched.location && formik.errors.location && (

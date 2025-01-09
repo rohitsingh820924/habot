@@ -14,6 +14,25 @@
     width: 160px !important;
 }
 
+.countryCode {
+    button {
+        padding: 2px 5px 2px 0px;
+        border-radius: 4px 0 0 4px;
+        border-color: #d9d9d9;
+        border-right: none;
+    }
+    ul::-webkit-scrollbar {
+        display: none;
+    }
+
+    input {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 6px !important;
+        font-size: 12px;
+    }
+}
+
 /* Responsive */
 @media (max-width: 767px) {
     .service-select .ant-select-selector {

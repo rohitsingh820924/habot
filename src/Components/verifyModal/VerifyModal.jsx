@@ -1,16 +1,27 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Modal } from 'antd';
 import PinInput from "react-pin-input";
+import { apiPost } from '../../libs/api';
+import { useDispatch, useSelector } from "react-redux";
+import { setIsLoginOpen } from '../../libs/store/features/loginSlice';
 
 const VerifyModal = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [otp, setOtp] = useState("");
-
-  const showModal = () => {
-    setIsModalOpen(true);
-  };
-  const handleOk = () => {
-    setIsModalOpen(false);
+  const dispatch = useDispatch();
+  const email = useSelector((state) => state.auth.email)
+  const isAuth = useSelector((state) => state.auth.isAuth)
+  const showModal = async () => {
+    try {
+      const response = await apiPost('http://localhost:5000/auth/send-verification-email', {email})
+      if (response.status) {
+      } else {
+        setIsModalOpen(true);
+        alert('true')
+      }
+     } catch (error) {
+      alert('false')
+     }
   };
   const handleCancel = () => {
     setIsModalOpen(false);
@@ -21,17 +32,26 @@ const VerifyModal = () => {
       .getData("text")
       .split("")
       .filter((char) => !isNaN(char))
-      .slice(0, 4);
+      .slice(0, 6);
     setOtp(pasteData.join(""));
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async() => {
     alert(`OTP Submitted: ${otp}`);
-    // Add your OTP submission logic here (e.g., API call)
+    try {
+      const response = await apiPost('http://localhost:5000/auth/verify-email', {otp, email})
+      if (response.status) {
+        setIsModalOpen(false);
+        alert('true')
+      } else {
+      }
+     } catch (error) {
+      alert('false')
+     }
   };
   return (
     <>
-      <Button type="primary" className='hover:!bg-[#EB7150] bg-transparent border border-[#EB7150] text-[#EB7150] font-bold text-sm text-lg rounded-md py-4 px-12 md:h-16 h-10' onClick={showModal}>
+      <Button type="primary" className='hover:!bg-[#EB7150] bg-transparent border border-[#EB7150] text-[#EB7150] font-bold text-sm rounded-md py-4 px-12 md:h-16 h-10' onClick={isAuth ? showModal : () => dispatch(setIsLoginOpen(true))}>
       Get Verified
       </Button>
       <Modal title="" centered open={isModalOpen} width={400} onCancel={handleCancel} footer={''}>
@@ -39,7 +59,7 @@ const VerifyModal = () => {
       <p className='text-center mb-5'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequuntur, perferendis.</p>
       <div className="flex flex-col items-center">
       <PinInput
-        length={4}
+        length={6}
         type="numeric"
         inputStyle={{
           borderColor: "gray",

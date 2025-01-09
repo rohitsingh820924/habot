@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ServiceIone from "../../assets/icons/service-icon.svg";
 import LocatinIone from "../../assets/icons/location-icon.svg";
 import { Select, Col, Divider, Row, Flex, Button, Card, Tag } from "antd";
@@ -10,11 +10,29 @@ import { MdErrorOutline } from "react-icons/md";
 import { FaBriefcase } from "react-icons/fa";
 import VerifiedSection from "../../Components/verifiedSection/VerifiedSection";
 import { useParams } from "react-router-dom";
+import { apiGet } from "../../libs/api";
+import { formatDistanceToNow } from 'date-fns';
+
+function formatRelativeDate(date) {
+  const inputDate = new Date(date);
+  const distance = formatDistanceToNow(inputDate, { addSuffix: true });
+  return distance;
+}
 
 const Requirements = () => {
 
+  const [data, setData] = useState(null)
   const { slug } = useParams();
+  const fetchJobs = async() => {
+    const jobs = await apiGet('http://localhost:5000/api/getAllJobs')
+    console.log(jobs);
+    setData(jobs)
+    
+  }
 
+  useEffect(()=> {
+    fetchJobs();
+  },[])
   const formik = useFormik({
     initialValues: {
       service: "",
@@ -201,18 +219,20 @@ const Requirements = () => {
           </Col>
           <Col className="gutter-row" span={10}>
             <div className="mt-8 flex flex-col gap-5">
-              <Card hoverable>
+              {
+                data?.map((item) =>   
+              <Card hoverable key={item._id}>
                 <h2 className="text-xl font-semibold mb-4">
-                  TUTION FOR KIDS 1ST 12 STANDARD
+                  {item.title}
                 </h2>
                 <p className="mb-1">
-                  <b>Created by :</b> SUKUR AHAMED MONDAL
+                  <b>Created by :</b> {item.createdBy}
                 </p>
                 <p className="flex mb-1">
                   <b>Average rating :</b>{" "}
                   <span className="pl-3">
                     <ReactStarRatings
-                      rating={3.5}
+                      rating={item.rating}
                       starRatedColor="#00732f"
                       starEmptyColor="gray"
                       numberOfStars={5}
@@ -222,253 +242,19 @@ const Requirements = () => {
                     />
                   </span>
                 </p>
-                <p>Abu Dhabi</p>
+                <p>{item.location}</p>
 
                 <Button type="primary" className="my-5" icon={<FaBriefcase />}>
-                  Full-time
+                  {item.jobType}
                 </Button>
 
                 <p className="mb-1">
-                  TUITION FOR KIDS AVAILABLE FROM 1ST TO 12TH STANDARD FOR ALL
-                  SUBJECTS
+                  {item.description}
                 </p>
-                <p className="text-gray-400">a year ago</p>
+                <p className="text-gray-400">{formatRelativeDate(item.createdDate)}</p>
               </Card>
-
-              <Card hoverable>
-                <h2 className="text-xl font-semibold mb-4">
-                  TUTION FOR KIDS 1ST 12 STANDARD
-                </h2>
-                <p className="mb-1">
-                  <b>Created by :</b> SUKUR AHAMED MONDAL
-                </p>
-                <p className="flex mb-1">
-                  <b>Average rating :</b>{" "}
-                  <span className="pl-3">
-                    <ReactStarRatings
-                      rating={3.5}
-                      starRatedColor="#00732f"
-                      starEmptyColor="gray"
-                      numberOfStars={5}
-                      name="rating"
-                      starDimension="16px"
-                      starSpacing="1px"
-                    />
-                  </span>
-                </p>
-                <p>Abu Dhabi</p>
-
-                <Button type="primary" className="my-5" icon={<FaBriefcase />}>
-                  Full-time
-                </Button>
-
-                <p className="mb-1">
-                  TUITION FOR KIDS AVAILABLE FROM 1ST TO 12TH STANDARD FOR ALL
-                  SUBJECTS
-                </p>
-                <p className="text-gray-400">a year ago</p>
-              </Card>
-              <Card hoverable>
-                <h2 className="text-xl font-semibold mb-4">
-                  TUTION FOR KIDS 1ST 12 STANDARD
-                </h2>
-                <p className="mb-1">
-                  <b>Created by :</b> SUKUR AHAMED MONDAL
-                </p>
-                <p className="flex mb-1">
-                  <b>Average rating :</b>{" "}
-                  <span className="pl-3">
-                    <ReactStarRatings
-                      rating={3.5}
-                      starRatedColor="#00732f"
-                      starEmptyColor="gray"
-                      numberOfStars={5}
-                      name="rating"
-                      starDimension="16px"
-                      starSpacing="1px"
-                    />
-                  </span>
-                </p>
-                <p>Abu Dhabi</p>
-
-                <Button type="primary" className="my-5" icon={<FaBriefcase />}>
-                  Full-time
-                </Button>
-
-                <p className="mb-1">
-                  TUITION FOR KIDS AVAILABLE FROM 1ST TO 12TH STANDARD FOR ALL
-                  SUBJECTS
-                </p>
-                <p className="text-gray-400">a year ago</p>
-              </Card>
-
-              <Card hoverable>
-                <h2 className="text-xl font-semibold mb-4">
-                  TUTION FOR KIDS 1ST 12 STANDARD
-                </h2>
-                <p className="mb-1">
-                  <b>Created by :</b> SUKUR AHAMED MONDAL
-                </p>
-                <p className="flex mb-1">
-                  <b>Average rating :</b>{" "}
-                  <span className="pl-3">
-                    <ReactStarRatings
-                      rating={3.5}
-                      starRatedColor="#00732f"
-                      starEmptyColor="gray"
-                      numberOfStars={5}
-                      name="rating"
-                      starDimension="16px"
-                      starSpacing="1px"
-                    />
-                  </span>
-                </p>
-                <p>Abu Dhabi</p>
-
-                <Button type="primary" className="my-5" icon={<FaBriefcase />}>
-                  Full-time
-                </Button>
-
-                <p className="mb-1">
-                  TUITION FOR KIDS AVAILABLE FROM 1ST TO 12TH STANDARD FOR ALL
-                  SUBJECTS
-                </p>
-                <p className="text-gray-400">a year ago</p>
-              </Card>
-              <Card hoverable>
-                <h2 className="text-xl font-semibold mb-4">
-                  TUTION FOR KIDS 1ST 12 STANDARD
-                </h2>
-                <p className="mb-1">
-                  <b>Created by :</b> SUKUR AHAMED MONDAL
-                </p>
-                <p className="flex mb-1">
-                  <b>Average rating :</b>{" "}
-                  <span className="pl-3">
-                    <ReactStarRatings
-                      rating={3.5}
-                      starRatedColor="#00732f"
-                      starEmptyColor="gray"
-                      numberOfStars={5}
-                      name="rating"
-                      starDimension="16px"
-                      starSpacing="1px"
-                    />
-                  </span>
-                </p>
-                <p>Abu Dhabi</p>
-
-                <Button type="primary" className="my-5" icon={<FaBriefcase />}>
-                  Full-time
-                </Button>
-
-                <p className="mb-1">
-                  TUITION FOR KIDS AVAILABLE FROM 1ST TO 12TH STANDARD FOR ALL
-                  SUBJECTS
-                </p>
-                <p className="text-gray-400">a year ago</p>
-              </Card>
-
-              <Card hoverable>
-                <h2 className="text-xl font-semibold mb-4">
-                  TUTION FOR KIDS 1ST 12 STANDARD
-                </h2>
-                <p className="mb-1">
-                  <b>Created by :</b> SUKUR AHAMED MONDAL
-                </p>
-                <p className="flex mb-1">
-                  <b>Average rating :</b>{" "}
-                  <span className="pl-3">
-                    <ReactStarRatings
-                      rating={3.5}
-                      starRatedColor="#00732f"
-                      starEmptyColor="gray"
-                      numberOfStars={5}
-                      name="rating"
-                      starDimension="16px"
-                      starSpacing="1px"
-                    />
-                  </span>
-                </p>
-                <p>Abu Dhabi</p>
-
-                <Button type="primary" className="my-5" icon={<FaBriefcase />}>
-                  Full-time
-                </Button>
-
-                <p className="mb-1">
-                  TUITION FOR KIDS AVAILABLE FROM 1ST TO 12TH STANDARD FOR ALL
-                  SUBJECTS
-                </p>
-                <p className="text-gray-400">a year ago</p>
-              </Card>
-              <Card hoverable>
-                <h2 className="text-xl font-semibold mb-4">
-                  TUTION FOR KIDS 1ST 12 STANDARD
-                </h2>
-                <p className="mb-1">
-                  <b>Created by :</b> SUKUR AHAMED MONDAL
-                </p>
-                <p className="flex mb-1">
-                  <b>Average rating :</b>{" "}
-                  <span className="pl-3">
-                    <ReactStarRatings
-                      rating={3.5}
-                      starRatedColor="#00732f"
-                      starEmptyColor="gray"
-                      numberOfStars={5}
-                      name="rating"
-                      starDimension="16px"
-                      starSpacing="1px"
-                    />
-                  </span>
-                </p>
-                <p>Abu Dhabi</p>
-
-                <Button type="primary" className="my-5" icon={<FaBriefcase />}>
-                  Full-time
-                </Button>
-
-                <p className="mb-1">
-                  TUITION FOR KIDS AVAILABLE FROM 1ST TO 12TH STANDARD FOR ALL
-                  SUBJECTS
-                </p>
-                <p className="text-gray-400">a year ago</p>
-              </Card>
-
-              <Card hoverable>
-                <h2 className="text-xl font-semibold mb-4">
-                  TUTION FOR KIDS 1ST 12 STANDARD
-                </h2>
-                <p className="mb-1">
-                  <b>Created by :</b> SUKUR AHAMED MONDAL
-                </p>
-                <p className="flex mb-1">
-                  <b>Average rating :</b>{" "}
-                  <span className="pl-3">
-                    <ReactStarRatings
-                      rating={3.5}
-                      starRatedColor="#00732f"
-                      starEmptyColor="gray"
-                      numberOfStars={5}
-                      name="rating"
-                      starDimension="16px"
-                      starSpacing="1px"
-                    />
-                  </span>
-                </p>
-                <p>Abu Dhabi</p>
-
-                <Button type="primary" className="my-5" icon={<FaBriefcase />}>
-                  Full-time
-                </Button>
-
-                <p className="mb-1">
-                  TUITION FOR KIDS AVAILABLE FROM 1ST TO 12TH STANDARD FOR ALL
-                  SUBJECTS
-                </p>
-                <p className="text-gray-400">a year ago</p>
-              </Card>
+                )
+              }
             </div>
           </Col>
           <Col className="gutter-row" span={14}>

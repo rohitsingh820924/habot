@@ -22,7 +22,7 @@ const Footer = () => {
                     <div>
                         <h2 className='text-[15px] text-white font-bold mb-3 font-inter'>Company</h2>
                         <ul>
-                            <li><Link className='text-white font-light text-sm mb-2 font-inter' to="/about">About</Link></li>
+                            <li><Link className='text-white font-light text-sm mb-2 font-inter' to="/about-us">About</Link></li>
                             <li><Link className='text-white font-light text-sm mb-2 font-inter' to="/faq">FAQ</Link></li>
                         </ul>
                     </div>

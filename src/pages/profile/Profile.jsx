@@ -19,7 +19,7 @@ export const Profile = () => {
       const dispatch = useDispatch();
       const showModal = async () => {
         try {
-          const response = await apiPost('http://localhost:5000/auth/send-verification-email', {email})
+          const response = await apiPost('/auth/send-verification-email', {email})
           if (response.status) {
           } else {
             setIsModalOpen(true);
@@ -45,7 +45,7 @@ export const Profile = () => {
       const handleSubmit = async() => {
         alert(`OTP Submitted: ${otp}`);
         try {
-          const response = await apiPost('http://localhost:5000/auth/verify-email', {otp, email})
+          const response = await apiPost('/auth/verify-email', {otp, email})
           if (response.status) {
             dispatch(setProfile())
             setIsModalOpen(false);

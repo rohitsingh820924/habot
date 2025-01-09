@@ -39,9 +39,8 @@ export const setProfile = createAsyncThunk('auth/setProfile', async (_, { getSta
       throw new Error('No auth token available');
     }
     
-    const response = await apiPost('http://localhost:5000/auth/profile', { id: getState().auth.id }, // Send the user's ID from Redux state
+    const response = await apiPost('/auth/profile', { id: getState().auth.id }, // Send the user's ID from Redux state
     );
-    console.log(response);
     
     return response; // Assuming the API returns user data in response.data
   } catch (error) {
@@ -94,8 +93,6 @@ export const authSlice = createSlice({
       .addCase(setProfile.fulfilled, (state, action) => {
         state.loading = false;
         const {name, phoneNumber, country, profilePicture, isVerified, email } = action.payload;
-        console.log(name);
-        
         
         state.fullname = name;
         state.phoneNumber = phoneNumber;

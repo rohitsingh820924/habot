@@ -24,7 +24,7 @@ const Requirements = () => {
   const [data, setData] = useState(null)
   const { slug } = useParams();
   const fetchJobs = async() => {
-    const jobs = await apiGet('http://localhost:5000/api/getAllJobs')
+    const jobs = await apiGet('/api/getAllJobs')
     console.log(jobs);
     setData(jobs)
     

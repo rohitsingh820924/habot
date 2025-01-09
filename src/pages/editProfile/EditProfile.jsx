@@ -52,7 +52,7 @@ export const EditProfile = () => {
         values.phoneNumber == phoneNumber ? '' : formData.append('phoneNumber', values.phoneNumber);
         values.country == country ? '' : formData.append('country', values.country);
         try {
-          const response = await apiPatch('http://localhost:5000/auth/update-profile', formData, true)
+          const response = await apiPatch('/auth/update-profile', formData, true)
           console.log("API Response:", response);
           if (response) {
             dispatch(checkAuthStatus());

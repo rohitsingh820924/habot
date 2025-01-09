@@ -21,7 +21,7 @@ const Feedback = () => {
       }),
       onSubmit: async(values) => {
         try {
-          const response = await apiPost('http://localhost:5000/api/feedback', {values, email})
+          const response = await apiPost('/api/feedback', {values, email})
           if (response.token) {
             const token = JSON.stringify({ jwt: response.token });
             Cookies.set('authToken', token, { path: '/' });

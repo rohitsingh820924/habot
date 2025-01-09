@@ -26,7 +26,7 @@ const PostRequirement = () => {
     }),
     onSubmit: async(values) => {
       try {
-        const response = await apiPost('http://localhost:5000/api/post-requirements', {values, email})
+        const response = await apiPost('/api/post-requirements', {values, email})
         if (response.token) {
           const token = JSON.stringify({ jwt: response.token });
           Cookies.set('authToken', token, { path: '/' });

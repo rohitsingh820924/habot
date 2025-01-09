@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 const baseUrl = import.meta.env.VITE_SERVER_URL;
-console.log('API Base URL:', baseUrl);
 
 export async function apiGet(endpoint, params = {}, additionalHeaders = {}) {
   try {

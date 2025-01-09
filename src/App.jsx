@@ -19,6 +19,7 @@ import Accessibility from './pages/accessibility/Accessibility'
 import Feedback from './pages/feedback/Feedback'
 import { Profile } from './pages/profile/Profile'
 import { EditProfile } from './pages/editProfile/EditProfile'
+import ProtectedRoute from './Components/protectedRoute/ProtectedRoute'
 
 function App() {
   const dispatch = useDispatch()
@@ -55,8 +56,8 @@ function App() {
         <Route path='/terms' element={<Terms />} />
         <Route path='/accessibility' element={<Accessibility />} />
         <Route path='/feedback' element={<Feedback />} />
-        <Route path='/profile' element={<Profile />} />
-        <Route path='/edit-profile' element={<EditProfile />} />
+        <Route path='/profile' element={<ProtectedRoute element={<Profile />} />} />
+        <Route path='/edit-profile' element={<ProtectedRoute element={<EditProfile />} />} />
       </Routes>
       <Footer />
       </ConfigProvider>

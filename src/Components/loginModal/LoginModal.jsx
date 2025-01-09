@@ -35,7 +35,7 @@ const LoginModal = () => {
     }),
     onSubmit: async (values) => {
        try {
-        const response = await apiPost('http://localhost:5000/auth/login', values)
+        const response = await apiPost('/auth/login', values)
         if (response.token) {
           const token = JSON.stringify({ jwt: response.token });
           Cookies.set('authToken', token, { path: '/' });
@@ -99,7 +99,7 @@ const LoginModal = () => {
     }),
     onSubmit: async(values) => {
       try {
-        const response = await apiPost('http://localhost:5000/auth/signup', values)
+        const response = await apiPost('/auth/signup', values)
         if (response.token) {
           const token = JSON.stringify({ jwt: response.token });
           Cookies.set('authToken', token, { path: '/' });
@@ -147,7 +147,7 @@ const LoginModal = () => {
     }),
     onSubmit: async(values) => {
       try {
-        const response = await apiPost('http://localhost:5000/auth/forgot-password', values)
+        const response = await apiPost('/auth/forgot-password', values)
         if (response.status) {
           setIsLogin(4)
           enqueueSnackbar(response.message, {
@@ -207,7 +207,7 @@ const LoginModal = () => {
     }),
     onSubmit: async(values) => {
       try {
-        const response = await apiPost('http://localhost:5000/auth/reset-password', {email, password : values.password})
+        const response = await apiPost('/auth/reset-password', {email, password : values.password})
         if (response.status) {
           enqueueSnackbar(response.message, {
             variant: 'success',
@@ -262,7 +262,7 @@ const LoginModal = () => {
       const handleSubmit = async() => {
         alert(`OTP Submitted: ${otp}`);
         try {
-          const response = await apiPost('http://localhost:5000/auth/verify-password', {otp, email})
+          const response = await apiPost('/auth/verify-password', {otp, email})
           if (response.status) {
             setIsLogin(5)
             enqueueSnackbar(response.message, {

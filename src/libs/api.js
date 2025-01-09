@@ -1,8 +1,11 @@
 import axios from 'axios';
 
+const baseUrl = import.meta.env.VITE_SERVER_URL;
+console.log('API Base URL:', baseUrl);
+
 export async function apiGet(endpoint, params = {}, additionalHeaders = {}) {
   try {
-    const response = await axios.get(endpoint, {
+    const response = await axios.get(`${baseUrl}${endpoint}`, {
       params,
       headers: {
         'Content-Type': 'application/json',
@@ -23,7 +26,7 @@ export async function apiPost(endpoint, body, isFormData = false, additionalHead
       ...additionalHeaders,
     };
 
-    const response = await axios.post(endpoint, isFormData ? body : JSON.stringify(body), { headers });
+    const response = await axios.post(`${baseUrl}${endpoint}`, isFormData ? body : JSON.stringify(body), { headers });
     return response.data;
   } catch (error) {
     console.error('API POST Error:', error);
@@ -33,7 +36,7 @@ export async function apiPost(endpoint, body, isFormData = false, additionalHead
 
 export async function apiPut(endpoint, body, additionalHeaders = {}) {
   try {
-    const response = await axios.put(endpoint, JSON.stringify(body), {
+    const response = await axios.put(`${baseUrl}${endpoint}`, JSON.stringify(body), {
       headers: {
         'Content-Type': 'application/json',
         ...additionalHeaders,
@@ -48,7 +51,7 @@ export async function apiPut(endpoint, body, additionalHeaders = {}) {
 
 export async function apiDelete(endpoint, body, additionalHeaders = {}) {
   try {
-    const response = await axios.delete(endpoint, {
+    const response = await axios.delete(`${baseUrl}${endpoint}`, {
       headers: {
         'Content-Type': 'application/json',
         ...additionalHeaders,
@@ -69,7 +72,7 @@ export async function apiPatch(endpoint, body, isFormData = false, additionalHea
       ...additionalHeaders,
     };
 
-    const response = await axios.patch(endpoint, isFormData ? body : JSON.stringify(body), { headers });
+    const response = await axios.patch(`${baseUrl}${endpoint}`, isFormData ? body : JSON.stringify(body), { headers });
     return response.data;
   } catch (error) {
     console.error('API PATCH Error:', error);

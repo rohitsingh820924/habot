@@ -3,17 +3,19 @@ import { GrGoogle } from "react-icons/gr";
 import { FaFacebookF } from "react-icons/fa";
 import { FaLinkedinIn } from "react-icons/fa";
 
+
 const SocialLogin = () => {
+  const baseUrl = import.meta.env.VITE_SERVER_URL;
     const handleGoogleLogin = () => {
-        window.location.href = 'http://localhost:5000/auth/google';
+        window.location.href = `${baseUrl}/auth/google`;
       };
     
       const handleFacebookLogin = () => {
-        window.location.href = 'http://localhost:5000/auth/facebook';
+        window.location.href = `${baseUrl}/auth/facebook`;
       };
     
       const handleLinkedInLogin = () => {
-        window.location.href = 'http://localhost:5000/auth/linkedin';
+        window.location.href = `${baseUrl}/auth/linkedin`;
       };
   return (
     <>

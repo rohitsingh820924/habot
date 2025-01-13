@@ -3,7 +3,7 @@ import { enqueueSnackbar, closeSnackbar } from 'notistack'
 import { Button, Modal, Input } from 'antd';
 import { useFormik } from "formik";
 import * as Yup from "yup"
-import { checkAuthStatus } from '../../libs/store/features/authSlice';
+import { checkAuthStatus, setProfile } from '../../libs/store/features/authSlice';
 import Cookies from 'js-cookie'
 
 import { useSelector, useDispatch } from 'react-redux'
@@ -40,6 +40,7 @@ const LoginModal = () => {
           const token = JSON.stringify({ jwt: response.token });
           Cookies.set('authToken', token, { path: '/' });
           dispatch(checkAuthStatus());
+          dispatch(setProfile());
           enqueueSnackbar('LogIn Successful!', {
             variant: 'success',
             action: (key) => (
@@ -104,6 +105,7 @@ const LoginModal = () => {
           const token = JSON.stringify({ jwt: response.token });
           Cookies.set('authToken', token, { path: '/' });
           dispatch(checkAuthStatus());
+          dispatch(setProfile());
           enqueueSnackbar('Signup Successful!', {
             variant: 'success',
             action: (key) => (
